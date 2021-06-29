@@ -23,18 +23,21 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const [cart, setCart] = useState<Product[]>(() => {
-    // const storagedCart = Buscar dados do localStorage
 
-    // if (storagedCart) {
-    //   return JSON.parse(storagedCart);
-    // }
+     const storagedCart = localStorage.getItem('@RocketShoes:cart');
+
+     if (storagedCart) {
+       return JSON.parse(storagedCart); // enderecei o localstorage
+     }                                  //e converti em string
 
     return [];
   });
 
   const addProduct = async (productId: number) => {
     try {
-      // TODO
+      localStorage.setItem('@rocketShoes:cart', JSON.stringify(productId) )
+      
+      
     } catch {
       // TODO
     }
